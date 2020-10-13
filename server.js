@@ -1,6 +1,7 @@
 const express = require('express');
 const ejs = require('ejs');
 const bodyParser = require('body-parser');
+const date = require(__dirname + "/dateGenerator.js");
 const app = express();
 
 app.set('view engine', ejs);
@@ -11,15 +12,8 @@ let items = ["wash the dog", "water the plants"];
 let workitems = [];
 
 app.get('/', (req, res) => {
-    let today = new Date();
-    let options = {
-        weekday: 'long',
-        day: 'numeric',
-        month: 'long'
-    };
-
+    let day = date();
     console.log(items);
-    let day = today.toLocaleDateString("en-US", options);   
     res.render('index.ejs', {date: day, toDoItems: items});
 });
 
