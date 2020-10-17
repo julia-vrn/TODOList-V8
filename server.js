@@ -1,14 +1,17 @@
 const express = require('express');
 const ejs = require('ejs');
 const bodyParser = require('body-parser');
-const date = require(__dirname + "/dateGenerator.js");
+//const date = require(__dirname + "/dateGenerator.js");
+const mainRoute = require('./routes/main');
 const app = express();
 
 app.set('view engine', ejs);
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: true}));
 
-let items = ["wash the dog", "water the plants"];
+
+app.use(mainRoute);
+/*let items = ["wash the dog", "water the plants"];
 let workitems = [];
 
 app.get('/', (req, res) => {
