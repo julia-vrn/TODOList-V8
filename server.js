@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const ejs = require('ejs');
 const bodyParser = require('body-parser');
 //const date = require(__dirname + "/dateGenerator.js");
@@ -11,6 +12,11 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 
 app.use(mainRoute);
+
+app.get('*', (req, res)=> {
+    res.status(404).render('404.ejs');
+});
+
 /*let items = ["wash the dog", "water the plants"];
 let workitems = [];
 
@@ -43,6 +49,6 @@ app.get("/work", (req, res) => {
     res.redirect("/work");
 });*/
 
-app.listen(5000, () => {
+app.listen(3000, () => {
     console.log('Server is running on Port 5000');
 })
