@@ -15,6 +15,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(mainRoute);
 app.use(getError);
+
+
 /*(req, res)=> {
     res.status(404).render('404.ejs');
 }*/ 
