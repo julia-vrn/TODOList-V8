@@ -1,9 +1,11 @@
 const express = require('express');
-const path = require('path');
 const ejs = require('ejs');
 const bodyParser = require('body-parser');
 //const date = require(__dirname + "/dateGenerator.js");
 const mainRoute = require('./routes/main');
+const getError = require('./routes/404');
+
+
 const app = express();
 
 app.set('view engine', ejs);
@@ -12,10 +14,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 
 app.use(mainRoute);
-
-app.get('*', (req, res)=> {
+app.use(getError);
+/*(req, res)=> {
     res.status(404).render('404.ejs');
-});
+}*/ 
 
 /*let items = ["wash the dog", "water the plants"];
 let workitems = [];
