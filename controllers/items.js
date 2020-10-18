@@ -4,10 +4,12 @@ const Task = require('../models/task');
 //let workitems = [];
 
 exports.getMainPage = (req, res) => {
-    const items = Task.fetchTasks();
-    let day = date();
-    console.log(items);
-    res.render('index.ejs', {date: day, toDoItems: items});
+    Task.fetchTasks(items => {
+        let day = date();
+        console.log('log from main page controller'+items);
+        res.render('index.ejs', {date: day, toDoItems: items});
+    });
+    
 };
 
 exports.postNewItem = (req, res) => {
@@ -25,6 +27,8 @@ exports.postNewItem = (req, res) => {
 
 
 exports.getWorkPage =  (req, res) => {
-    const workItems = Task.fetchWorkItems();
-    res.render("index.ejs", {date: "Work To Do", toDoItems: workItems});
+    Task.fetchWorkItems(workItems => {
+        res.render("index.ejs", {date: "Work To Do", toDoItems: workItems});
+    });
+    
 };
